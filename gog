@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> кнопка</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e1e0e0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            position: relative;
+            width: 300px;
+            height: 250px;
+            text-align: center;
+            background: rgb(194, 175, 175);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .btn {
+            position: absolute;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        #yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #no {
+            background-color: #FF6347;
+            color: white;
+        }
+        .envelope {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 18px;
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        .envelope.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question">Ти мене любишь?</div>
+        <button class="btn" id="yes" onclick="showMessage()">Да</button>
+        <button class="btn" id="no" onmouseover="teleportButton()">Нет</button>
+    </div>
+    <div class="envelope" id="envelope"> Я тебе теж)</div>
+
+    <script>
+        function teleportButton() {
+            const button = document.getElementById("no");
+            const container = document.querySelector(".container");
+            
+            const maxX = container.clientWidth - button.clientWidth;
+            const maxY = container.clientHeight - button.clientHeight;
+            
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            
+            button.style.left = ${newX}px;
+            button.style.top = ${newY}px;
+        }
+        
+        function showMessage() {
+            const envelope = document.getElementById("envelope");
+            envelope.classList.add("show");
+            setTimeout(() => {
+                envelope.classList.remove("show");
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
